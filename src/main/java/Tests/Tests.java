@@ -175,5 +175,15 @@ public class Tests extends BaseScript {
         inputFiltByName.sendKeys(newCategName);
         WebElement submitFilterBtn = driver.findElement(By.xpath("//button[@id='submitFilterButtoncategory']"));
         submitFilterBtn.click();
+        
+        try {
+            explicitWait(10).until(ExpectedConditions.visibilityOfElementLocated(By.tagName("tbody")));
+            String compare = driver.findElement(By.xpath("(//tr/td)[last()-4]")).getText();
+            System.out.println("Entered category name: " + newCategName);
+            System.out.println("Found category name: " + compare);
+            if (compare.contains(newCategName)) System.out.println("The category has been created");
+        } catch (NotFoundException e) {
+            System.out.println("The category hasn't been created");
+        }
     }
 }
