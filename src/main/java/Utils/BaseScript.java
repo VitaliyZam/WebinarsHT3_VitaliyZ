@@ -27,7 +27,9 @@ public abstract class BaseScript {
     }
 
     public static void setBROWSER(String BROWSER) {
-        BaseScript.BROWSER = BROWSER;
+        if (BROWSER.equals(BrowserType.CHROME)||BROWSER.equals(BrowserType.IEXPLORE)||
+                BROWSER.equals(BrowserType.FIREFOX)||BROWSER.equals(BrowserType.EDGE)) BaseScript.BROWSER = BROWSER;
+        else BaseScript.BROWSER = BrowserType.CHROME;
     }
 
     public static String getBROWSER() {
